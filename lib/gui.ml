@@ -17,15 +17,7 @@ let new_game_window w_px h_px game_width game_height =
   remember_mode true;
   display_mode true;
   let board = new_random_board game_width game_height in
-  let ind = ref 0 in
-  let init_diff =
-    Array.fold_left
-      (fun acc c ->
-        let rv = [ Diff (!ind, c) ] @ acc in
-        ind := !ind + 1;
-        rv)
-      [] board.cells
-  in
+  let init_diff = get_diffs board in
   ( {
       width = w_px;
       height = h_px;

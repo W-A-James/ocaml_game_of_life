@@ -10,7 +10,7 @@ type board = {
   neighbours : int array;
 }
 
-let new_board (w: int) (h: int) =
+let new_board (w : int) (h : int) =
   {
     width = w;
     height = h;
@@ -18,7 +18,7 @@ let new_board (w: int) (h: int) =
     neighbours = Array.make (w * h) 0;
   }
 
-let display_board (b: board) =
+let display_board (b : board) =
   Array.iteri
     (fun (index : int) (c : cell) ->
       if Int.rem index b.width = 0 then Printf.printf "\n%s" (cell_to_string c)
@@ -88,10 +88,16 @@ let get_diffs (b : board) : diff list =
       List.rev_append new_diff acc)
     [] b.cells
 
-let update_board (b: board) : diff list =
+let update_board (b : board) : diff list =
   update_neigbours b;
   let diffs = get_diffs b in
   List.iter
     (fun x -> match x with Diff (i, change) -> b.cells.(i) <- change)
     diffs;
   diffs
+
+let randomize (b : board) =
+  Array.iteri
+    (fun i _ -> b.cells.(i) <- (if Random.bool () then Alive else Dead))
+    b.cells;
+  update_neigbours b
