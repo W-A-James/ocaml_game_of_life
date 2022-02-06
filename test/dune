@@ -1,0 +1,3 @@
+(test
+ (name ocaml_game_of_life)
+ )

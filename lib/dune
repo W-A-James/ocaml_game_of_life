@@ -1,0 +1,6 @@
+(library
+ (name ocaml_game_of_life)
+ (libraries graphics)
+ (inline_tests)
+ (preprocess (pps ppx_inline_test))
+ )
