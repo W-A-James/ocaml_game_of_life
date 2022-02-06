@@ -4,5 +4,6 @@
  (libraries 
    ocaml_game_of_life
    graphics
+   threads
    unix)
  )
