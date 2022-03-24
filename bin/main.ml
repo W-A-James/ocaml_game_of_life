@@ -67,9 +67,8 @@ let () =
       Mutex.lock m;
       Condition.wait ready_for_update m;
       if !refresh then (
-        Game_of_life.randomize window.game_board; 
-        refresh := false;
-      );
+        Game_of_life.randomize window.game_board;
+        refresh := false);
       debug_print "board_update_loop updating";
       let d = Game_of_life.update_board window.game_board in
       diffs := d;
